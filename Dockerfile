@@ -1,4 +1,4 @@
-FROM golang:1.19 as op
+FROM golang:1.26rc3 as op
 
 WORKDIR /app
 
@@ -13,7 +13,7 @@ RUN cd op-node && \
     make op-node
 
 
-FROM golang:1.19 as geth
+FROM golang:1.26rc3 as geth
 
 WORKDIR /app
 
@@ -27,7 +27,7 @@ RUN git init && \
 RUN go run build/ci.go install -static ./cmd/geth
 
 
-FROM golang:1.19
+FROM golang:1.26rc3
 
 RUN apt-get update && \
     apt-get install -y jq curl
